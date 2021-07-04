@@ -1,0 +1,14 @@
+{% extends "ncaa/base.html" %}
+
+{% block content %}
+  <p>Conference: {{ conference }}</p>
+
+  <p>Teams:</p>
+  <ul>
+    {% for team in teams %}
+      <p>{{ team.name }}</p>
+    {% empty %}
+      <p>There are no teams in this conference yet.</p>
+    {% endfor %}
+  </ul>
+{% endblock content %}
