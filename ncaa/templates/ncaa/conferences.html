@@ -5,7 +5,9 @@
 
   <ul>
     {% for conference in conferences %}
-      <li><a href="{% url 'ncaa:conference' conference.id %}">{{ conference }}</a></li>
+      <li>
+        <a href="{% url 'ncaa:conference' conference.id %}">{{ conference }}</a>
+      </li>
     {% empty %}
       <li>No conferences have been added yet.</li>
     {% endfor %}

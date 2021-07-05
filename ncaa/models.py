@@ -21,3 +21,16 @@ class Team(models.Model):
   def __str__(self):
     """Return a string representation of the team"""
     return self.name
+
+
+class Player(models.Model):
+  """A player is a member of a team"""
+  team = models.ForeignKey(Team, on_delete=models.CASCADE)
+  name = models.CharField(max_length=200)
+
+  class Meta:
+    verbose_name_plural = 'players'
+
+  def __str__(self):
+    """Return a string representation of the player"""
+    return self.name

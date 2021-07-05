@@ -1,0 +1,14 @@
+{% extends "ncaa/base.html" %}
+
+{% block content %}
+  <p>Team: {{ team }}</p>
+
+  <p>Players</p>
+  <ul>
+    {% for player in players %}
+      <li>{{ player }}</li>
+    {% empty %}
+      <li>There are no players in this team yet.</li>
+    {% endfor %}
+  </ul>
+{% endblock content %}

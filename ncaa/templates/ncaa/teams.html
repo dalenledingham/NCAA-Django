@@ -1,16 +1,15 @@
-{% extends "ncaa/base.html" %}
+{% extends "ncaa/base.html"%}
 
 {% block content %}
-  <p>Conference: {{ conference }}</p>
+  <p>Teams</p>
 
-  <p>Teams:</p>
   <ul>
     {% for team in teams %}
       <li>
         <a href="{% url 'ncaa:team' team.id %}">{{ team }}</a>
       </li>
     {% empty %}
-      <p>There are no teams in this conference yet.</p>
+      <li>No teams have been added yet</li>
     {% endfor %}
   </ul>
 {% endblock content %}
