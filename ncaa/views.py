@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import Conference, Team
-from .forms import ConferenceForm, TeamForm
+from .forms import ConferenceForm, TeamForm, PlayerForm
 
 # Create your views here.
 def index(request):
@@ -50,7 +50,7 @@ def new_conference(request):
   return render(request, 'ncaa/new_conference.html', context)
 
 def new_team(request, conference_id):
-  """Add a new team for a particular conference"""
+  """Add a new team to a particular conference"""
   conference = Conference.objects.get(id=conference_id)
 
   if request.method != 'POST':
@@ -68,3 +68,23 @@ def new_team(request, conference_id):
   # Display a blank or invalid form
   context = {'conference': conference, 'form': form}
   return render(request, 'ncaa/new_team.html', context)
+
+def new_player(request, team_id):
+  """Add a new player to a particular team"""
+  team = Team.objects.get(id=team_id)
+
+  if request.method != 'POST':
+    # No data submitted; create a blank form
+    form = PlayerForm()
+  else:
+    # POST data submitted; process data
+    form = PlayerForm(data=request.POST)
+    if form.is_valid():
+      new_player = form.save(commit=False)
+      new_player.team = team
+      new_player.save()
+      return redirect('ncaa:team', team_id=team_id)
+
+  # Display a blank or invalid form
+  context = {'team': team, 'form': form}
+  return render(request, 'ncaa/new_player.html', context)

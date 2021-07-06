@@ -4,6 +4,11 @@
   <p>Team: {{ team }}</p>
 
   <p>Players</p>
+
+  <p>
+    <a href="{% url 'ncaa:new_player' team.id %}">Add new player</a>
+  </p>
+
   <ul>
     {% for player in players %}
       <li>{{ player }}</li>

@@ -25,4 +25,7 @@ urlpatterns = [
 
   # Page for adding a new Team
   path('new_team/<int:conference_id>/', views.new_team, name='new_team'),
+
+  # Page for adding a new Player
+  path('new_player/<int:team_id>/', views.new_player, name='new_player'),
 ]
