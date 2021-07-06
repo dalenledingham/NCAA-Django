@@ -1,7 +1,14 @@
 <p>
   <a href="{% url 'ncaa:index' %}">NCAA</a> - 
   <a href="{% url 'ncaa:conferences' %}">Conferences</a> - 
-  <a href="{% url 'ncaa:teams' %}">Teams</a>
+  <a href="{% url 'ncaa:teams' %}">Teams</a> - 
+
+  {% if user.is_authenticated %}
+    Hello, {{ user.username }}
+    <a href="{% url 'users:logout' %}">Log out</a>
+  {% else %}
+    <a href="{% url 'users:login' %}">Log in</a>
+  {% endif %}
 </p>
 
 {% block content %}{% endblock content %}
