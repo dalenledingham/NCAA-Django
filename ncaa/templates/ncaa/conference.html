@@ -4,6 +4,11 @@
   <p>Conference: {{ conference }}</p>
 
   <p>Teams:</p>
+
+  <p>
+    <a href="{% url 'ncaa:new_team' conference.id %}">Add new team</a>
+  </p>
+
   <ul>
     {% for team in teams %}
       <li>
