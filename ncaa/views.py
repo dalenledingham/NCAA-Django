@@ -1,18 +1,21 @@
 from django.shortcuts import render, redirect
 from .models import Conference, Team
 from .forms import ConferenceForm, TeamForm, PlayerForm
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def index(request):
   """The home page for final project"""
   return render(request, 'ncaa/index.html')
 
+@login_required
 def conferences(request):
   """Show all conferences"""
   conferences = Conference.objects.order_by('name')
   context = {'conferences': conferences}
   return render(request, 'ncaa/conferences.html', context)
 
+@login_required
 def conference(request, conference_id):
   """Show a single conference and all its teams"""
   conference = Conference.objects.get(id=conference_id)
@@ -20,12 +23,14 @@ def conference(request, conference_id):
   context = {'conference': conference, 'teams': teams}
   return render(request, 'ncaa/conference.html', context)
 
+@login_required
 def teams(request):
   """Show all teams"""
   teams = Team.objects.order_by('name')
   context = {'teams': teams}
   return render(request, 'ncaa/teams.html', context)
 
+@login_required
 def team(request, team_id):
   """Show a single team and all its players"""
   team = Team.objects.get(id=team_id)
@@ -33,6 +38,7 @@ def team(request, team_id):
   context = {'team': team, 'players': players}
   return render(request, 'ncaa/team.html', context)
 
+@login_required
 def new_conference(request):
   """Add a new conference"""
   if request.method != 'POST':
@@ -49,6 +55,7 @@ def new_conference(request):
   context = {'form': form}
   return render(request, 'ncaa/new_conference.html', context)
 
+@login_required
 def new_team(request, conference_id):
   """Add a new team to a particular conference"""
   conference = Conference.objects.get(id=conference_id)
@@ -69,6 +76,7 @@ def new_team(request, conference_id):
   context = {'conference': conference, 'form': form}
   return render(request, 'ncaa/new_team.html', context)
 
+@login_required
 def new_player(request, team_id):
   """Add a new player to a particular team"""
   team = Team.objects.get(id=team_id)
