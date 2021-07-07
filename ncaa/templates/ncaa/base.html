@@ -11,6 +11,7 @@
   {% bootstrap_javascript jquery='full' %}
 </head>
 <body>
+
   <nav class="navbar navbar-expand-md navbar-light bg-light mb-4 border">
     <a class="nvabar-brand" href="{% url 'ncaa:index' %}">NCAA</a>
 
@@ -45,21 +46,16 @@
       </ul>
     </div>
   </nav>
+
+
+  <main role="main" class="container">
+    <div class="pb-2 mb-2 border-bottom">
+      {% block page_header %}{% endblock page_header %}     
+    </div>
+    <div>
+      {% block content %}{% endblock content %}
+    </div>
+  </main>
+
 </body>
 </html>
-
-<p>
-  <a href="{% url 'ncaa:index' %}">NCAA</a> - 
-  <a href="{% url 'ncaa:conferences' %}">Conferences</a> - 
-  <a href="{% url 'ncaa:teams' %}">Teams</a> - 
-
-  {% if user.is_authenticated %}
-    Hello, {{ user.username }}.
-    <a href="{% url 'users:logout' %}">Log out</a>
-  {% else %}
-    <a href="{% url 'users:register' %}">Register</a>
-    <a href="{% url 'users:login' %}">Log in</a>
-  {% endif %}
-</p>
-
-{% block content %}{% endblock content %}
