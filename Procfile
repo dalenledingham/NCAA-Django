@@ -1,1 +1,1 @@
-web: gunicorn ncaa.wsgi --log-file -
+web: gunicorn final_project.wsgi --log-file -
