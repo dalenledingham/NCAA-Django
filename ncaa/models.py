@@ -30,6 +30,7 @@ class Player(models.Model):
   """A player is a member of a team"""
   team = models.ForeignKey(Team, on_delete=models.CASCADE)
   name = models.CharField(max_length=200)
+  position = models.CharField(max_length=200)
   owner = models.ForeignKey(User, on_delete=models.CASCADE)
 
   class Meta:
