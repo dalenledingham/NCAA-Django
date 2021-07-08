@@ -2,10 +2,16 @@
 
 {% block page_header %}
   <div class="jumbotron">
-    <h1 class="display-3">NCAA</h1>
+    {% if user.is_authenticated %}
+      <h1 class="display-3">Welcome back, {{ user.username }}!</h1>
 
-    <p class="lead">Build your own NCAA college football league by creating conferences, teams, and even players. Create an account or login to start building!</p>
+      <p class="lead">Your custom NCAA league is ready and waiting for you to get back to managing!</p>
+    {% else %}
+      <h1 class="display-3">NCAA</h1>
 
-    <a class="btn btn-lg btn-primary" href="{% url 'users:register' %}" role="button">Register &raquo;</a>
+      <p class="lead">Build your own NCAA college football league by creating conferences, teams, and even players. Create an account or login to start building!</p>
+
+      <a href="{% url 'users:register' %}" class="btn btn-lg btn-primary">Register &raquo;</a>
+    {% endif %}
   </div>
 {% endblock page_header %}
