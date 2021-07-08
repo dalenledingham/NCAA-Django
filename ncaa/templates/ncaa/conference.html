@@ -1,21 +1,26 @@
 {% extends "ncaa/base.html" %}
 
-{% block content %}
-  <p>Conference: {{ conference }}</p>
+{% block page_header %}
+  <h3>Conference: {{ conference.name }}</h3>
+{% endblock page_header %}
 
-  <p>Teams:</p>
+{% block content %}
+  <h5>Teams</h5>
 
   <p>
-    <a href="{% url 'ncaa:new_team' conference.id %}">Add new team</a>
+    <a href="{% url 'ncaa:new_team' conference.id %}">Add a new team</a>
   </p>
 
-  <ul>
-    {% for team in teams %}
-      <li>
-        <a href="{% url 'ncaa:team' team.id %}">{{ team }}</a>
-      </li>
-    {% empty %}
-      <p>There are no teams in this conference yet.</p>
-    {% endfor %}
-  </ul>
+  {% for team in teams %}
+    <div class="card mb-3">
+      <h5 class="card-header" style="text-align:center;">
+        <a href="{% url 'ncaa:team' team.id %}">{{ team.name }}</a>
+      </h5>
+      <!-- <div class="card-body">
+        {{ team }}
+      </div> -->
+    </div>
+  {% empty %}
+    <p>There are no teams in this conference yet.</p>
+  {% endfor %}
 {% endblock content %}

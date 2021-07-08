@@ -1,19 +1,21 @@
 {% extends "ncaa/base.html" %}
 
-{% block content %}
-  <p>Team: {{ team }}</p>
+{% block page_header %}
+  <h3>Team: {{ team.name }}</h3>
+{% endblock page_header %}
 
-  <p>Players</p>
+{% block content %}
+  <h5>Players</h5>
 
   <p>
-    <a href="{% url 'ncaa:new_player' team.id %}">Add new player</a>
+    <a href="{% url 'ncaa:new_player' team.id %}">Add a new player</a>
   </p>
 
-  <ul>
-    {% for player in players %}
-      <li>{{ player }}</li>
-    {% empty %}
-      <li>There are no players in this team yet.</li>
-    {% endfor %}
-  </ul>
+  {% for player in players %}
+    <ul style="list-style-type:none;">
+      <li><h6>{{ player.name }}</h6></li>
+    </ul>
+  {% empty %}
+    <p>There are no players in this team yet.</p>
+  {% endfor %}
 {% endblock content %}

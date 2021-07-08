@@ -1,5 +1,9 @@
 {% extends "ncaa/base.html" %}
 
+{% block page_header %}
+  <h3>Register</h3>
+{% endblock page_header %}
+
 {% block content %}
   <form method="post" action="{% url 'users:register' %}">
     {% csrf_token %}
