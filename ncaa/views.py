@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import Conference, Team
 from .forms import ConferenceForm, TeamForm, PlayerForm
 from django.contrib.auth.decorators import login_required
@@ -19,7 +19,7 @@ def conferences(request):
 @login_required
 def conference(request, conference_id):
   """Show a single conference and all its teams"""
-  conference = Conference.objects.get(id=conference_id)
+  conference = get_object_or_404(Conference, id=conference_id)
   # Make sure the conference belongs to the current user
   if conference.owner != request.user:
     raise Http404
