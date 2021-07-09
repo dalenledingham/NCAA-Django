@@ -28,4 +28,7 @@ urlpatterns = [
 
   # Page for adding a new Player
   path('new_player/<int:team_id>/', views.new_player, name='new_player'),
+
+  # Page for editing a conference
+  path('edit_conference/<int:conference_id>/', views.edit_conference, name='edit_conference'),
 ]

@@ -109,3 +109,20 @@ def new_player(request, team_id):
   # Display a blank or invalid form
   context = {'team': team, 'form': form}
   return render(request, 'ncaa/new_player.html', context)
+
+def edit_conference(request, conference_id):
+  """Edit an existing conference"""
+  conference = Conference.objects.get(id=conference_id)
+  
+  if request.method != 'POST':
+    # Initial request; pre-fill form with the current conference
+    form = ConferenceForm(instance=conference)
+  else:
+    # POST data submitted; process data
+    form = ConferenceForm(instance=conference, data=request.POST)
+    if form.is_valid():
+      form.save()
+      return redirect('ncaa:conference', conference_id=conference_id)
+
+  context = {'conference': conference, 'form': form}
+  return render(request, 'ncaa/edit_conference.html', context)

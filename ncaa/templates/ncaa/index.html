@@ -3,7 +3,7 @@
 {% block page_header %}
   <div class="jumbotron">
     {% if user.is_authenticated %}
-      <h1 class="display-3">Welcome back, {{ user.username }}!</h1>
+      <h1 class="display-3">Welcome, {{ user.username }}!</h1>
 
       <p class="lead">Your custom NCAA league is ready and waiting for you to get back to managing!</p>
     {% else %}

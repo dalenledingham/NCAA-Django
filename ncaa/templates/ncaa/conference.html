@@ -23,4 +23,9 @@
   {% empty %}
     <p>There are no teams in this conference yet.</p>
   {% endfor %}
+
+  <p>
+    <a href="{% url 'ncaa:edit_conference' conference.id %}">Edit conference</a>
+    Delete
+  </p>
 {% endblock content %}

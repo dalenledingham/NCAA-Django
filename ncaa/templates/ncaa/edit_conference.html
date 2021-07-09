@@ -1,0 +1,15 @@
+{% extends "ncaa/base.html"%}
+
+{% block content %}
+  <p>
+    <a href="{% url 'ncaa:conference' conference.id %}">{{ conference.name }}</a>
+  </p>
+
+  <p>Edit conference:</p>
+
+  <form action="{% url 'ncaa:edit_conference' conference.id %}" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button name="submit">Save changes</button>
+  </form>
+{% endblock content %}
