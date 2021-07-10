@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Conference, Team
+from .models import Conference, Team, Player
 from .forms import ConferenceForm, TeamForm, PlayerForm
 from django.contrib.auth.decorators import login_required
 from django.http import Http404
@@ -46,6 +46,24 @@ def team(request, team_id):
   players = team.player_set.order_by('name')
   context = {'team': team, 'players': players}
   return render(request, 'ncaa/team.html', context)
+
+@login_required
+def players(request):
+  """Show all players"""
+  players = Player.objects.filter(owner=request.user).order_by('team', 'name')
+  context = {'players': players}
+  return render(request, 'ncaa/players.html', context)
+
+@login_required
+def player(request, player_id):
+  """Show a single player"""
+  player = Player.objects.get(id=player_id)
+  # Make sure the player belongs to the current user
+  if player.owner != request.user:
+    raise Http404
+
+  context = {'player': player}
+  return render(request, 'ncaa/player.html', context)
 
 @login_required
 def new_conference(request):

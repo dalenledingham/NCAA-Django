@@ -20,6 +20,12 @@ urlpatterns = [
   # Details page for a single team
   path('teams/<int:team_id>/', views.team, name='team'),
 
+  # Page that shows all players
+  path('players/', views.players, name='players'),
+
+  # Details page for a single player
+  path('players/<int:player_id>/', views.player, name="player"),
+
   # Page for adding a new Conference
   path('new_conference/', views.new_conference, name='new_conference'),
 

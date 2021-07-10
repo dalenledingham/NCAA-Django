@@ -1,0 +1,14 @@
+{% extends "ncaa/base.html" %}
+
+{% block page_header %}
+  <h3>Player: {{ player.name }}</h3>
+{% endblock page_header %}
+
+{% block content %}
+  <h5>Name:</h5>
+  <p>{{ player.name }}</p>
+  <h5>Team:</h5>
+  <p>{{ player.team }}</p>
+  <h5>Position:</h5>
+  <p>{{ player.position }}</p>
+{% endblock content %}
