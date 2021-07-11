@@ -1,6 +1,7 @@
 """Defines URL patterns for ncaa"""
 
 from django.urls import path
+from django.conf.urls import url
 from . import views
 
 app_name = 'ncaa'
@@ -43,4 +44,13 @@ urlpatterns = [
 
   # Page for editing a player
   path('edit_player/<int:player_id>/', views.edit_player, name='edit_player'),
+
+  # URL for deleting a conference
+  url(r'^conference/(?P<pk>[0-9]+)/delete/$', views.delete_conference, name='delete_conference'),
+
+  # URL for deleting a team
+  url(r'^team/(?P<pk>[0-9]+)/delete/$', views.delete_team, name='delete_team'),
+
+  # URL for deleting a player
+  url(r'^player/(?P<pk>[0-9]+)/delete/$', views.delete_player, name='delete_player'),
 ]

@@ -21,7 +21,9 @@
     <p>There are no teams in this conference yet.</p>
   {% endfor %}
 
-  <p>
+  <form action="{% url 'ncaa:delete_conference' conference.id %}" method="post">
+    {% csrf_token %}
     <a href="{% url 'ncaa:edit_conference' conference.id %}" class="btn btn-primary">Edit</a>
-  </p>
+    <input type="submit" value="Delete" class="btn btn-danger">
+  </form>
 {% endblock content %}

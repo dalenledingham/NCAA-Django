@@ -178,3 +178,33 @@ def edit_player(request, player_id):
 
   context = {'player': player, 'form': form}
   return render(request, 'ncaa/edit_player.html', context)
+
+def delete_conference(request, pk):
+  """Delete an existing conference"""
+  conference = get_object_or_404(Conference, pk=pk)
+
+  if request.method == 'POST':
+    conference.delete()
+    return redirect('/')
+
+  return render(request, '/', {'conference': conference})
+
+def delete_team(request, pk):
+  """Delete an existing team"""
+  team = get_object_or_404(Team, pk=pk)
+
+  if request.method == 'POST':
+    team.delete()
+    return redirect('/')
+
+  return render(request, '/', {'team': team})
+
+def delete_player(request, pk):
+  """Delete an existing player"""
+  player = get_object_or_404(Player, pk=pk)
+
+  if request.method == 'POST':
+    player.delete()
+    return redirect('/')
+
+  return render(request, '/', {'player': player})

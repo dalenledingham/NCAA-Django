@@ -9,7 +9,9 @@
   <p><strong>Team:</strong> {{ player.team }}</p>
   <p><strong>Position:</strong> {{ player.position }}</p>
 
-<p>
+<form action="{% url 'ncaa:delete_player' player.id %}" method="post">
+  {% csrf_token %}
   <a href="{% url 'ncaa:edit_player' player.id %}" class="btn btn-primary">Edit</a>
-</p>
+  <input type="submit" value="Delete" class="btn btn-danger">
+</form>
 {% endblock content %}
