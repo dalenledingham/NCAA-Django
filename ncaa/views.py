@@ -38,7 +38,7 @@ def teams(request):
 @login_required
 def team(request, team_id):
   """Show a single team and all its players"""
-  team = Team.objects.get(id=team_id)
+  team = get_object_or_404(Team, id=team_id)
   # Make sure the team belongs to the current user
   if team.owner != request.user:
     raise Http404
@@ -57,7 +57,7 @@ def players(request):
 @login_required
 def player(request, player_id):
   """Show a single player"""
-  player = Player.objects.get(id=player_id)
+  player = get_object_or_404(Player, id=player_id)
   # Make sure the player belongs to the current user
   if player.owner != request.user:
     raise Http404
@@ -87,7 +87,7 @@ def new_conference(request):
 @login_required
 def new_team(request, conference_id):
   """Add a new team to a particular conference"""
-  conference = Conference.objects.get(id=conference_id)
+  conference = get_object_or_404(Conference, id=conference_id)
 
   if request.method != 'POST':
     # No data submitted; create a blank form
@@ -109,7 +109,7 @@ def new_team(request, conference_id):
 @login_required
 def new_player(request, team_id):
   """Add a new player to a particular team"""
-  team = Team.objects.get(id=team_id)
+  team = get_object_or_404(Team, id=team_id)
 
   if request.method != 'POST':
     # No data submitted; create a blank form
@@ -130,7 +130,7 @@ def new_player(request, team_id):
 
 def edit_conference(request, conference_id):
   """Edit an existing conference"""
-  conference = Conference.objects.get(id=conference_id)
+  conference = get_object_or_404(Conference, id=conference_id)
   
   if request.method != 'POST':
     # Initial request; pre-fill form with the current conference
@@ -147,7 +147,7 @@ def edit_conference(request, conference_id):
 
 def edit_team(request, team_id):
   """Edit an existing team"""
-  team = Team.objects.get(id=team_id)
+  team = get_object_or_404(Team, id=team_id)
 
   if request.method != 'POST':
     # Initial request; pre-fill form with the current team
@@ -164,7 +164,7 @@ def edit_team(request, team_id):
 
 def edit_player(request, player_id):
   """Edit an existing player"""
-  player = Player.objects.get(id=player_id)
+  player = get_object_or_404(Player, id=player_id)
 
   if request.method != 'POST':
     # Initial request; pre-fill form with current player
