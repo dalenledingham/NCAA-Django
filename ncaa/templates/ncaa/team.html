@@ -12,10 +12,17 @@
   </p>
 
   {% for player in players %}
-    <ul style="list-style-type:none;">
-      <li><h6>{{ player.name }}, {{ player.position }}</h6></li>
-    </ul>
+    <div class="card mb-3">
+      <h5 class="card-header" style="text-align:center;">
+        <a href="{% url 'ncaa:player' player.id %}">{{ player.name }}, {{ player.position }}</a>
+      </h5>
+    </div>
   {% empty %}
     <p>There are no players in this team yet.</p>
   {% endfor %}
+
+  <p>
+    <a href="{% url 'ncaa:edit_team' team.id %}">Edit team</a>
+    Delete
+  </p>
 {% endblock content %}

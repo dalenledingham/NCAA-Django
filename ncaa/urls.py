@@ -37,4 +37,7 @@ urlpatterns = [
 
   # Page for editing a conference
   path('edit_conference/<int:conference_id>/', views.edit_conference, name='edit_conference'),
+
+  # Page for editing a team
+  path('edit_team/<int:team_id>/', views.edit_team, name='edit_team'),
 ]

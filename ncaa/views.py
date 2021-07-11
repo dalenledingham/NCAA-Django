@@ -144,3 +144,19 @@ def edit_conference(request, conference_id):
 
   context = {'conference': conference, 'form': form}
   return render(request, 'ncaa/edit_conference.html', context)
+
+def edit_team(request, team_id):
+  """Edit an existing team"""
+  team = Team.objects.get(id=team_id)
+
+  if request.method != 'POST':
+    # Initial request; pre-fill form with the current team
+    form = TeamForm(instance=team)
+  else:
+    form = TeamForm(instance=team, data=request.POST)
+    if form.is_valid():
+      form.save()
+      return redirect('ncaa:team', team_id=team_id)
+
+  context = {'team': team, 'form': form}
+  return render(request, 'ncaa/edit_team.html', context)
