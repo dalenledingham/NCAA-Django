@@ -10,6 +10,6 @@
   <form action="{% url 'ncaa:new_conference' %}" method="post">
     {% csrf_token %}
     {{ form.as_p }}
-    <button name="submit" class="btn btn-sm btn-primary">Add conference</button>
+    <button name="submit" class="btn btn-primary">Add conference</button>
   </form>
 {% endblock content %}

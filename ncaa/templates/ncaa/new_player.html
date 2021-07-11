@@ -10,6 +10,6 @@
   <form action="{% url 'ncaa:new_player' team.id %}" method="post">
     {% csrf_token %}
     {{ form.as_p }}
-    <button name="submit" class="btn btn-sm btn-primary">Add player</button>
+    <button name="submit" class="btn btn-primary">Add player</button>
   </form>
 {% endblock content %}
