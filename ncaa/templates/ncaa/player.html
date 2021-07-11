@@ -11,4 +11,9 @@
   <p>{{ player.team }}</p>
   <h5>Position:</h5>
   <p>{{ player.position }}</p>
+
+<p>
+  <a href="{% url 'ncaa:edit_player' player.id %}">Edit player</a>
+  Delete
+</p>
 {% endblock content %}

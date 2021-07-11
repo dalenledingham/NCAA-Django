@@ -1,0 +1,15 @@
+{% extends "ncaa/base.html" %}
+
+{% block content %}
+  <p>
+    <a href="{% url 'ncaa:player' player.id %}">{{ player.name }}</a>
+  </p>
+
+  <p>Edit player:</p>
+
+  <form action="{% url 'ncaa:edit_player' player.id %}" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button name="submit">Save changes</button>
+  </form>
+{% endblock content %}

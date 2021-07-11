@@ -153,6 +153,7 @@ def edit_team(request, team_id):
     # Initial request; pre-fill form with the current team
     form = TeamForm(instance=team)
   else:
+    # POST data submitted; process data
     form = TeamForm(instance=team, data=request.POST)
     if form.is_valid():
       form.save()
@@ -160,3 +161,20 @@ def edit_team(request, team_id):
 
   context = {'team': team, 'form': form}
   return render(request, 'ncaa/edit_team.html', context)
+
+def edit_player(request, player_id):
+  """Edit an existing player"""
+  player = Player.objects.get(id=player_id)
+
+  if request.method != 'POST':
+    # Initial request; pre-fill form with current player
+    form = PlayerForm(instance=player)
+  else:
+    # POST data submitted; process data
+    form = PlayerForm(instance=player, data=request.POST)
+    if form.is_valid():
+      form.save()
+      return redirect('ncaa:player', player_id=player_id)
+
+  context = {'player': player, 'form': form}
+  return render(request, 'ncaa/edit_player.html', context)
