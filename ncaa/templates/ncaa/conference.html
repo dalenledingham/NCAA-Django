@@ -22,7 +22,6 @@
   {% endfor %}
 
   <p>
-    <a href="{% url 'ncaa:edit_conference' conference.id %}">Edit conference</a>
-    Delete
+    <a href="{% url 'ncaa:edit_conference' conference.id %}" class="btn btn-sm btn-primary">Edit</a>
   </p>
 {% endblock content %}

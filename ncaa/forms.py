@@ -20,4 +20,4 @@ class PlayerForm(forms.ModelForm):
   class Meta:
     model = Player
     fields = ['name','team','position']
-    labels = {'name': 'Name','position': 'Position'}
+    labels = {'name': 'Name','team': 'Team','position': 'Position'}

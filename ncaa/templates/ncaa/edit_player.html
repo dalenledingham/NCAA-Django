@@ -1,10 +1,12 @@
 {% extends "ncaa/base.html" %}
 
-{% block content %}
-  <p>
-    <a href="{% url 'ncaa:player' player.id %}">{{ player.name }}</a>
-  </p>
+{% block page_header %}
+  <h3>
+    <a href="{% url 'ncaa:player' player.id %}">Player: {{ player.name }}</a>
+  </h3>
+{% endblock page_header %}
 
+{% block content %}
   <p>Edit player:</p>
 
   <form action="{% url 'ncaa:edit_player' player.id %}" method="post">

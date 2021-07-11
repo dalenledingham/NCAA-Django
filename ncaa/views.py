@@ -178,3 +178,7 @@ def edit_player(request, player_id):
 
   context = {'player': player, 'form': form}
   return render(request, 'ncaa/edit_player.html', context)
+
+def delete_player(request, player_id):
+  """Delete an existing player"""
+  Player.objects.filter(id=player_id).delete()
